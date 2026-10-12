@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Profile — NEXT MOVE</title><link rel="stylesheet" href="styles.css"></head><body><header class="nav" data-std></header>
+<main class="sec"><div class="wrap"><h1>Your Profile</h1><p class="mut">Stored only in this browser. Saving also refreshes your settling plan (completed tasks are kept where task ids match).</p>
+<form id="pf" class="card formgrid" novalidate><label>Your name (optional)<input name="name" maxlength="40"></label><label>City<input name="city" maxlength="60" required></label><label>Purpose<select name="purpose"><option value="job">Job</option><option value="education">Education</option><option value="marriage">Marriage</option><option value="other">Other</option></select></label><label>Preferred locality<input name="locality" list="locs" maxlength="60"></label><label>Monthly budget (₹)<input name="budget" type="number" min="1000" max="500000" required></label><label>Accommodation<select name="accommodation"><option>PG</option><option>hostel</option><option>rental room</option><option>other</option></select></label><label>Diet<select name="diet"><option value="">Not specified</option><option>vegetarian</option><option>non-vegetarian</option><option>vegan</option><option>no preference</option></select></label><label>Move-in date<input name="moveIn" type="date"></label>
+<div class="full"><button class="btn" type="submit">Save profile</button> <span id="pm" role="status"></span></div></form></div></main>
+<datalist id="locs"></datalist><script src="common.js"></script>
+<script>
+let p={};try{const v=JSON.parse(localStorage.getItem('sm_profile'));if(v&&typeof v==='object')p=v}catch{}
+const f=document.getElementById('pf');for(const[k,v]of Object.entries(p)){const el=f.elements[k];if(el)el.value=v}
+f.onsubmit=async e=>{e.preventDefault();const m=document.getElementById('pm'),d=Object.fromEntries(new FormData(f));d.budget=Number(d.budget);
+ if(!d.city.trim()||!(d.budget>=1000&&d.budget<=500000)){m.className='err';m.textContent='Enter a city and a budget between ₹1,000 and ₹5,00,000.';return}
+ try{const r=await fetch('/api/plan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}),j=await r.json();if(!r.ok)throw new Error(j.error);
+  localStorage.setItem('sm_profile',JSON.stringify(d));localStorage.setItem('sm_plan',JSON.stringify(j.plan));m.className='ok';m.textContent='Profile saved and plan refreshed.'}catch(x){m.className='err';m.textContent=x.message}};
+</script></body></html>

@@ -1,0 +1,240 @@
+[
+ {
+  "id": "a1",
+  "name": "Demo PG A",
+  "category": "PG and hostel",
+  "locality": "Vijay Nagar",
+  "rent": 7500,
+  "deposit": 7500,
+  "brokerage": 0,
+  "utilities": null,
+  "amenities": [
+   "Wi-Fi",
+   "Meals"
+  ],
+  "commute": "Not provided",
+  "priceMin": 7500,
+  "priceMax": 7500,
+  "description": "Sample shared PG listing for demonstration.",
+  "contact": "Demo: +91 90000 00001 · demo1@example.com"
+ },
+ {
+  "id": "a2",
+  "name": "Demo PG B",
+  "category": "PG and hostel",
+  "locality": "Bhawarkuan",
+  "rent": 6000,
+  "deposit": 12000,
+  "brokerage": null,
+  "utilities": 1000,
+  "amenities": [
+   "Laundry"
+  ],
+  "commute": "Not provided",
+  "priceMin": 6000,
+  "priceMax": 6000,
+  "description": "Sample PG listing with unknown brokerage.",
+  "contact": "Demo: +91 90000 00002 · demo2@example.com"
+ },
+ {
+  "id": "a3",
+  "name": "Demo Rental Room C",
+  "category": "Rental rooms",
+  "locality": "Palasia",
+  "rent": 9000,
+  "deposit": 18000,
+  "brokerage": 4500,
+  "utilities": null,
+  "amenities": [
+   "Attached bath"
+  ],
+  "commute": "Not provided",
+  "priceMin": 9000,
+  "priceMax": 9000,
+  "description": "Sample single-room rental.",
+  "contact": "Demo: +91 90000 00003 · demo3@example.com"
+ },
+ {
+  "id": "t1",
+  "name": "Demo Tiffin Service",
+  "category": "Tiffin and meals",
+  "locality": "Vijay Nagar",
+  "priceMin": 2500,
+  "priceMax": 3500,
+  "description": "Sample monthly tiffin plan range.",
+  "contact": "Demo: +91 90000 00004 · demo4@example.com"
+ },
+ {
+  "id": "g1",
+  "name": "Demo Grocery Store",
+  "category": "Grocery stores",
+  "locality": "Bhawarkuan",
+  "description": "Sample neighbourhood grocery entry; no price data.",
+  "contact": "Demo: +91 90000 00005 · demo5@example.com"
+ },
+ {
+  "id": "l1",
+  "name": "Demo Laundry",
+  "category": "Laundry services",
+  "locality": "Palasia",
+  "priceMin": 300,
+  "priceMax": 600,
+  "description": "Sample monthly laundry range.",
+  "contact": "Demo: +91 90000 00006 · demo6@example.com"
+ },
+ {
+  "id": "p1",
+  "name": "Demo Plumber/Electrician",
+  "category": "Plumbers and electricians",
+  "locality": "Vijay Nagar",
+  "description": "Sample service entry; ask for a quote before work.",
+  "contact": "Demo: +91 90000 00007 · demo7@example.com"
+ },
+ {
+  "id": "i1",
+  "name": "Demo Internet Provider",
+  "category": "Internet providers",
+  "locality": "Palasia",
+  "priceMin": 500,
+  "priceMax": 900,
+  "description": "Sample broadband plan range.",
+  "contact": "Demo: +91 90000 00008 · demo8@example.com"
+ },
+ {
+  "id": "r1",
+  "name": "Demo Transport Note",
+  "category": "Transport information",
+  "locality": "Bhawarkuan",
+  "description": "Sample entry; check current bus and auto options locally.",
+  "contact": "Demo: +91 90000 00009 · demo9@example.com"
+ },
+ {
+  "id": "h1",
+  "name": "Demo Pharmacy/Clinic",
+  "category": "Pharmacies and healthcare",
+  "locality": "Vijay Nagar",
+  "description": "Sample entry; confirm hours and services directly.",
+  "contact": "Demo: +91 90000 00010 · demo10@example.com"
+ },
+ {
+  "id": "a4",
+  "name": "Demo PG D",
+  "category": "PG and hostel",
+  "locality": "Rajendra Nagar",
+  "rent": 6500,
+  "deposit": 6500,
+  "brokerage": null,
+  "utilities": null,
+  "amenities": [
+   "Wi-Fi"
+  ],
+  "commute": "Not provided",
+  "priceMin": 6500,
+  "priceMax": 6500,
+  "description": "Sample PG listing in another locality.",
+  "contact": "Demo: +91 90000 00011 · demo11@example.com"
+ },
+ {
+  "id": "t2",
+  "name": "Demo Tiffin Service 2",
+  "category": "Tiffin and meals",
+  "locality": "Saket",
+  "priceMin": 2200,
+  "priceMax": 3000,
+  "description": "Sample monthly tiffin plan range.",
+  "contact": "Demo: +91 90000 00012 · demo12@example.com"
+ },
+ {
+  "id": "l2",
+  "name": "Demo Laundry 2",
+  "category": "Laundry services",
+  "locality": "MR-10",
+  "priceMin": 250,
+  "priceMax": 500,
+  "description": "Sample laundry entry.",
+  "contact": "Demo: +91 90000 00013 · demo13@example.com"
+ },
+ {
+  "id": "g2",
+  "name": "Demo Grocery Store 2",
+  "category": "Grocery stores",
+  "locality": "Sudama Nagar",
+  "description": "Sample grocery entry; no price data.",
+  "contact": "Demo: +91 90000 00014 · demo14@example.com"
+ },
+ {
+  "id": "h2",
+  "name": "Demo Pharmacy 2",
+  "category": "Pharmacies and healthcare",
+  "locality": "Annapurna",
+  "description": "Sample entry; confirm hours directly.",
+  "contact": "Demo: +91 90000 00015 · demo15@example.com"
+ },
+ {
+  "id": "i2",
+  "name": "Demo Internet Provider 2",
+  "category": "Internet providers",
+  "locality": "Scheme 54",
+  "priceMin": 600,
+  "priceMax": 1000,
+  "description": "Sample broadband plan range.",
+  "contact": "Demo: +91 90000 00016 · demo16@example.com"
+ },
+ {
+  "id": "a5",
+  "name": "Demo PG E",
+  "category": "PG and hostel",
+  "locality": "Bengali Square",
+  "rent": 5800,
+  "deposit": 5800,
+  "brokerage": 0,
+  "utilities": null,
+  "amenities": [
+   "Wi-Fi",
+   "Laundry"
+  ],
+  "commute": "Not provided",
+  "priceMin": 5800,
+  "priceMax": 5800,
+  "description": "Sample PG listing.",
+  "contact": "Demo: +91 90000 00017 · demo17@example.com"
+ },
+ {
+  "id": "t3",
+  "name": "Demo Tiffin Service 3",
+  "category": "Tiffin and meals",
+  "locality": "Tilak Nagar",
+  "priceMin": 2400,
+  "priceMax": 3200,
+  "description": "Sample monthly tiffin range.",
+  "contact": "Demo: +91 90000 00018 · demo18@example.com"
+ },
+ {
+  "id": "i3",
+  "name": "Demo Internet Provider 3",
+  "category": "Internet providers",
+  "locality": "Super Corridor",
+  "priceMin": 550,
+  "priceMax": 950,
+  "description": "Sample broadband range.",
+  "contact": "Demo: +91 90000 00019 · demo19@example.com"
+ },
+ {
+  "id": "r2",
+  "name": "Demo Rental Room F",
+  "category": "Rental rooms",
+  "locality": "Kanadia Road",
+  "rent": 8200,
+  "deposit": 16400,
+  "brokerage": null,
+  "utilities": null,
+  "amenities": [
+   "Attached bath"
+  ],
+  "commute": "Not provided",
+  "priceMin": 8200,
+  "priceMax": 8200,
+  "description": "Sample single-room rental.",
+  "contact": "Demo: +91 90000 00020 · demo20@example.com"
+ }
+]

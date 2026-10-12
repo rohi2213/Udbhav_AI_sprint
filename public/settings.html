@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Settings — NEXT MOVE</title><link rel="stylesheet" href="styles.css"></head><body><header class="nav" data-std></header>
+<main class="sec"><div class="wrap"><h1>Settings</h1><div class="card"><h3>Display</h3><label class="task"><input type="checkbox" id="lt"><span>Larger text</span></label></div>
+<div class="card" style="margin-top:14px"><h3>Your data</h3><p class="mut">Everything is saved in this browser only (localStorage). Roommate/provider edit keys are also stored here: if you clear them you lose the ability to edit or delete those posts.</p>
+<p><button class="btn ghost" id="ex">Export my data</button> <button class="btn ghost" id="rc">Reset checklist</button> <button class="btn ghost" id="rb">Reset budget</button> <button class="btn ghost" id="rk">Forget edit keys</button> <button class="btn" id="ra" style="background:#b91c1c">Delete all my data</button></p><p id="sm" role="status"></p></div></div></main>
+<script src="common.js"></script>
+<script>
+const KEYS=['sm_profile','sm_plan','sm_done','sm_budget','sm_keys','sm_rmkeys','sm_settings'],say=t=>document.getElementById('sm').textContent=t;
+const rm=ks=>{try{ks.forEach(k=>localStorage.removeItem(k))}catch{}};
+let s={};try{s=JSON.parse(localStorage.getItem('sm_settings'))||{}}catch{}
+const lt=document.getElementById('lt');lt.checked=!!s.largeText;
+lt.onchange=()=>{try{localStorage.setItem('sm_settings',JSON.stringify({largeText:lt.checked}))}catch{}document.documentElement.style.fontSize=lt.checked?'130%':'';say('Saved.')};
+document.getElementById('ex').onclick=()=>{const o={};KEYS.filter(k=>k!=='sm_keys'&&k!=='sm_rmkeys').forEach(k=>{try{const v=localStorage.getItem(k);if(v!==null)o[k]=JSON.parse(v)}catch{}});
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(o,null,2)],{type:'application/json'}));a.download='next-move-data.json';a.click();say('Exported (edit keys are not included).')};
+document.getElementById('rc').onclick=()=>{if(confirm('Reset checklist progress?')){rm(['sm_done']);say('Checklist reset.')}};
+document.getElementById('rb').onclick=()=>{if(confirm('Reset budget?')){rm(['sm_budget']);say('Budget reset.')}};
+document.getElementById('rk').onclick=()=>{if(confirm('Forget edit keys? You will no longer be able to edit or delete your posts and listings.')){rm(['sm_keys','sm_rmkeys']);say('Edit keys removed.')}};
+document.getElementById('ra').onclick=()=>{if(confirm('Delete ALL saved data in this browser?')){rm(KEYS);document.documentElement.style.fontSize='';lt.checked=false;say('All data deleted.')}};
+</script></body></html>

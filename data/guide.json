@@ -1,0 +1,179 @@
+{
+ "note": "Original editorial orientation notes written for NEXT MOVE from general public knowledge of Indore. No prices, no businesses, no contact details. Neighbourhoods change quickly: visit in person and confirm before you commit.",
+ "localities": [
+  {
+   "name": "Vijay Nagar",
+   "vibe": "Busy commercial and office belt",
+   "tags": [
+    "job",
+    "food",
+    "nightlife"
+   ],
+   "goodFor": "Professionals who want offices, cafes, malls and eateries close by.",
+   "watchOut": "Traffic on the main stretch at peak hours; rents are often higher near the main road than a few lanes inside.",
+   "ask": [
+    "How far is the place from the main road and your office?",
+    "Is parking included?"
+   ]
+  },
+  {
+   "name": "Bhawarkuan",
+   "vibe": "Student and coaching hub",
+   "tags": [
+    "education",
+    "budget",
+    "food"
+   ],
+   "goodFor": "Students who want PGs, hostels, tiffin and study spaces within walking distance.",
+   "watchOut": "Crowded lanes and high demand around exam seasons; check noise levels at the time you will study.",
+   "ask": [
+    "Are meals and Wi-Fi included?",
+    "What are the gate timings?"
+   ]
+  },
+  {
+   "name": "Palasia",
+   "vibe": "Central, well connected, mature neighbourhood",
+   "tags": [
+    "job",
+    "central",
+    "food"
+   ],
+   "goodFor": "People who want a central address with easy access to other parts of the city.",
+   "watchOut": "Central addresses tend to cost more; compare against nearby localities.",
+   "ask": [
+    "What is included in the rent?",
+    "How is the water supply?"
+   ]
+  },
+  {
+   "name": "Scheme 54",
+   "vibe": "Residential-commercial pocket next to Vijay Nagar",
+   "tags": [
+    "job",
+    "central"
+   ],
+   "goodFor": "Those who want Vijay Nagar access in a slightly calmer setting.",
+   "watchOut": "Lanes vary a lot in feel; walk around in the evening before deciding.",
+   "ask": [
+    "How long is the commute at your usual hour?"
+   ]
+  },
+  {
+   "name": "Rajwada",
+   "vibe": "Historic old-city centre with markets",
+   "tags": [
+    "heritage",
+    "food",
+    "central"
+   ],
+   "goodFor": "Anyone who enjoys markets, street food and old-city character.",
+   "watchOut": "Narrow roads and heavy crowds, especially in the evening and on festival days.",
+   "ask": [
+    "Is the lane reachable by an auto or a car?",
+    "How is the noise at night?"
+   ]
+  },
+  {
+   "name": "Khajrana",
+   "vibe": "Dense, lively residential area",
+   "tags": [
+    "budget",
+    "family"
+   ],
+   "goodFor": "Those looking for a lived-in neighbourhood with local shops close to home.",
+   "watchOut": "Congestion around the temple area on busy days.",
+   "ask": [
+    "What do neighbours say about water and power cuts?"
+   ]
+  },
+  {
+   "name": "Rajendra Nagar",
+   "vibe": "Quiet residential area",
+   "tags": [
+    "family",
+    "budget"
+   ],
+   "goodFor": "People who prefer a calmer residential setting over a busy commercial one.",
+   "watchOut": "Check evening transport options if you work late.",
+   "ask": [
+    "How do you get around after dark?"
+   ]
+  },
+  {
+   "name": "Super Corridor",
+   "vibe": "Growing office and institute zone",
+   "tags": [
+    "job",
+    "education"
+   ],
+   "goodFor": "People whose office or college is in this belt and who want to avoid a long daily trip.",
+   "watchOut": "Fewer shops and eateries in some stretches; confirm what is within walking distance.",
+   "ask": [
+    "Where is the nearest grocery and pharmacy?"
+   ]
+  },
+  {
+   "name": "Rau",
+   "vibe": "Southern edge of the city, institutes nearby",
+   "tags": [
+    "education",
+    "budget"
+   ],
+   "goodFor": "Students and staff linked to institutions on the southern side.",
+   "watchOut": "Longer trips into the city centre; plan your regular route first.",
+   "ask": [
+    "How will you reach the centre without your own vehicle?"
+   ]
+  },
+  {
+   "name": "Mhow",
+   "vibe": "Separate cantonment town outside Indore proper",
+   "tags": [
+    "education",
+    "family"
+   ],
+   "goodFor": "Those with a work or study link in Mhow itself.",
+   "watchOut": "It is a separate town; daily travel into Indore adds real time and cost.",
+   "ask": [
+    "What is the realistic door-to-door commute?"
+   ]
+  }
+ ],
+ "firstWeek": [
+  {
+   "title": "Walk the lanes at two different times",
+   "text": "Visit the place once in the daytime and once after dark. Noise, lighting and crowds change a lot."
+  },
+  {
+   "title": "Get terms in writing",
+   "text": "Rent, deposit, notice period and what is included should be written down before you pay anything."
+  },
+  {
+   "title": "Test your real commute",
+   "text": "Do the trip at the hour you will actually travel, not on a quiet Sunday."
+  },
+  {
+   "title": "Find the basics within 10 minutes",
+   "text": "A grocery, a pharmacy and a place to eat that suits your diet make the first week far easier."
+  }
+ ],
+ "local": [
+  {
+   "name": "Sarafa Bazaar",
+   "what": "Old-city market known for its evening street food."
+  },
+  {
+   "name": "56 Dukan (Chhappan Dukan)",
+   "what": "A well-known food street popular for snacks and sweets."
+  },
+  {
+   "name": "Rajwada Palace",
+   "what": "The historic palace at the heart of the old city."
+  },
+  {
+   "name": "Lalbagh Palace",
+   "what": "Former royal residence, a landmark on the city's southwest side."
+  }
+ ]
+}

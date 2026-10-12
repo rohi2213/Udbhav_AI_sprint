@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Customer Dashboard — NEXT MOVE</title><link rel="stylesheet" href="styles.css"></head><body>
+<header class="nav" data-std><div class="wrap navin"><a class="logo" href="index.html">NEXT MOVE</a><nav class="links" style="display:flex"><a href="index.html">Home</a><a href="provider.html">For Providers</a></nav></div></header>
+<main class="sec"><div class="wrap"><h1>Customer Dashboard</h1><div id="dash"></div></div></main>
+<script>
+const LS=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v??d}catch{return d}};
+const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN'),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+(async()=>{const p=LS('sm_profile',null),plan=LS('sm_plan',null),done=LS('sm_done',{})||{},b=LS('sm_budget',null),box=document.getElementById('dash');
+if(!p||!plan||!Array.isArray(plan.stages)){box.innerHTML='<p class="empty">No plan yet. <a href="index.html#start">Tell us about your move</a> to create one.</p>';return}
+const all=plan.stages.flatMap(s=>s.tasks),n=all.filter(t=>done[t.id]).length,pct=all.length?Math.round(n/all.length*100):0,left=all.filter(t=>!done[t.id]).slice(0,5);
+const tot=b&&typeof b==='object'?Object.values(b).reduce((t,v)=>t+(Number(v)||0),0):0;
+let svc=[];try{svc=(await(await fetch('/api/services')).json()).services||[]}catch{}
+const near=svc.filter(s=>!p.locality||s.locality===p.locality);
+box.innerHTML=`<div class="grid3"><div class="card"><h3>Progress</h3><p><b>${pct}%</b> · ${all.length-n} tasks left</p><div class="bar"><i style="width:${pct}%"></i></div></div>
+<div class="card"><h3>Budget</h3><p>Planned ${inr(tot)} of ${inr(p.budget)}</p><p class="${tot>p.budget?'err':'ok'}">${tot>p.budget?'Over by '+inr(tot-p.budget):'Within budget by '+inr(p.budget-tot)}</p><a href="index.html#budget">Edit budget</a></div>
+<div class="card"><h3>Your move</h3><p>${esc(p.city)} · ${esc(p.purpose)} · ${esc(p.accommodation)}</p><p class="mut">Locality: ${esc(p.locality||'any')}</p></div></div>
+<h2>Next tasks</h2><div class="card">${left.length?left.map(t=>`<p>• ${esc(t.text)}</p>`).join(''):'<p>All tasks complete.</p>'}<a href="index.html#dashboard">Open full plan</a></div>
+<h2>Services in ${esc(p.locality||'all localities')}</h2>${near.length?'<div class="grid3">'+near.slice(0,6).map(s=>`<article class="card"><span class="badge">${s.verification==='verified'?'Verified':s.verification==='demo'?'Demo':'Provider-listed, unverified'}</span><h3>${esc(s.name)}</h3><p class="mut">${esc(s.category)}</p></article>`).join('')+'</div>':'<p class="empty">No services found for this locality.</p>'}`})();
+</script><datalist id="locs"></datalist><script src="common.js"></script></body></html>

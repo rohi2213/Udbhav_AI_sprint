@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin — NEXT MOVE</title><link rel="stylesheet" href="styles.css"><meta name="robots" content="noindex"></head><body><header class="nav" data-std></header>
+<main class="sec"><div class="wrap"><h1>Admin</h1><form id="lg" class="card row"><label class="sr" for="tk">Admin token</label><input id="tk" type="password" autocomplete="off" placeholder="Admin token" required><button class="btn" type="submit">Sign in</button></form><p id="am" role="status"></p>
+<div id="panel" hidden><h2>Provider listings</h2><div id="ls" class="scroll"></div><h2>Roommate posts</h2><div id="rm" class="scroll"></div><h2>Reports</h2><div id="rp" class="scroll"></div><h2>Contact messages</h2><div id="ms" class="scroll"></div></div></div></main>
+<script src="common.js"></script><script>
+let tok='';const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const api=async(u,o={})=>{const r=await fetch(u,{...o,headers:{'Content-Type':'application/json','x-admin-token':tok}}),j=await r.json();if(!r.ok)throw new Error(j.error||'Request failed');return j};
+const tbl=(h,rows)=>rows.length?`<table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${rows.join('')}</table>`:'<p class="empty">Nothing here.</p>';
+async function load(){const d=await api('/api/admin/data');$('#panel').hidden=false;
+ $('#ls').innerHTML=tbl(['Name','Category','Locality','Contact','Status','Actions'],d.listings.map(l=>`<tr><td>${esc(l.name)}<br><small>${esc(l.id)}</small></td><td>${esc(l.category)}</td><td>${esc(l.locality)}</td><td>${esc(l.contact||'—')}</td><td>${esc(l.verification)}${l.lastConfirmed?'<br><small>'+esc(l.source)+' · '+esc(l.lastConfirmed)+'</small>':''}</td><td><button class="btn ghost" data-v="${esc(l.id)}">Verify</button> <button class="btn ghost" data-dl="${esc(l.id)}">Delete</button></td></tr>`));
+ $('#rm').innerHTML=tbl(['Name','Locality','Type','Budget','Requests','Actions'],d.roommates.map(r=>`<tr><td>${esc(r.name)}<br><small>${esc(r.bio)}</small></td><td>${esc(r.locality)}</td><td>${esc(r.type)}</td><td>₹${r.budget}</td><td>${r.requestCount}</td><td><button class="btn ghost" data-dr="${esc(r.id)}">Delete</button></td></tr>`));
+ $('#rp').innerHTML=tbl(['Listing id','Reason','Date','Actions'],d.reports.map(r=>`<tr><td>${esc(r.target)}</td><td>${esc(r.reason)}</td><td>${esc(r.at.slice(0,10))}</td><td><button class="btn ghost" data-dp="${esc(r.id)}">Dismiss</button></td></tr>`));
+ $('#ms').innerHTML=tbl(['Name','Email','Message','Date'],d.messages.map(m=>`<tr><td>${esc(m.name)}</td><td>${esc(m.email)}</td><td>${esc(m.message)}</td><td>${esc(m.at.slice(0,10))}</td></tr>`))}
+$('#lg').onsubmit=async e=>{e.preventDefault();tok=$('#tk').value;$('#tk').value='';$('#am').textContent='Signing in…';try{await load();$('#am').textContent='Signed in.';$('#lg').hidden=true}catch(x){tok='';$('#am').className='err';$('#am').textContent=x.message}};
+document.addEventListener('click',async e=>{const t=e.target.dataset;try{
+ if(t.v){const s=prompt('How did you verify this listing? (source, max 120)');if(!s)return;const d=prompt('Date confirmed (YYYY-MM-DD)',new Date().toISOString().slice(0,10));if(!d)return;await api('/api/admin/verify',{method:'POST',body:JSON.stringify({id:t.v,source:s,lastConfirmed:d})})}
+ else if(t.dl&&confirm('Delete listing?'))await api('/api/admin/listings/'+t.dl,{method:'DELETE'});
+ else if(t.dr&&confirm('Delete post?'))await api('/api/admin/roommates/'+t.dr,{method:'DELETE'});
+ else if(t.dp)await api('/api/admin/reports/'+t.dp,{method:'DELETE'});else return;
+ await load()}catch(x){alert(x.message)}});
+</script></body></html>

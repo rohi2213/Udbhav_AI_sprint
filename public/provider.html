@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Provider Dashboard — NEXT MOVE</title><link rel="stylesheet" href="styles.css"></head><body>
+<header class="nav" data-std><div class="wrap navin"><a class="logo" href="index.html">NEXT MOVE</a><nav class="links" style="display:flex"><a href="index.html">Home</a><a href="customer.html">My Dashboard</a></nav></div></header>
+<main class="sec"><div class="wrap"><h1>Provider Dashboard</h1><p class="mut">List your service for newcomers. New listings appear as <b>Provider-listed, unverified</b>. Contact details you enter are shown publicly. Only list services you actually offer.</p>
+<div class="grid3" id="stats"></div>
+<form id="pf" class="card formgrid" novalidate><label>Service name<input name="name" maxlength="80" required></label><label>Category<select name="category" id="pc"></select></label><label>Locality<input name="locality" maxlength="60" list="locs" required></label>
+<label>Min price (₹, optional)<input name="priceMin" type="number" min="0"></label><label>Max price (₹, optional)<input name="priceMax" type="number" min="0"></label><label>Public contact (optional)<input name="contact" maxlength="80"></label>
+<label>Source of info (optional)<input name="source" maxlength="120" placeholder="e.g. my own price list"></label><label class="full">Description<textarea name="description" maxlength="300" rows="3" required></textarea></label>
+<div class="full"><button class="btn" type="submit">Add listing</button> <span id="pm" role="status"></span></div></form>
+<h2>Your listings (this browser)</h2><div id="mine" class="grid3"></div></div></main>
+<script>
+let mineCount=0;const LSget=()=>{try{const v=JSON.parse(localStorage.getItem('sm_keys'));return v&&typeof v==='object'?v:{}}catch{return{}}},keys=LSget(),save=()=>{try{localStorage.setItem('sm_keys',JSON.stringify(keys))}catch{}};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pr=s=>s.priceMin==null?'Price not provided':s.priceMin===s.priceMax?'₹'+s.priceMin:'₹'+s.priceMin+'–₹'+s.priceMax;
+async function load(){let svc=[];try{svc=(await(await fetch('/api/services')).json()).services||[]}catch{document.getElementById('mine').innerHTML='<p class="empty">Could not load listings.</p>';return}
+ const cats=[...new Set(svc.map(s=>s.category))];const pc=document.getElementById('pc');if(!pc.options.length)pc.innerHTML=cats.map(c=>`<option>${esc(c)}</option>`).join('');
+ const mine=svc.filter(s=>keys[s.id]);mineCount=mine.length;
+ document.getElementById('stats').innerHTML=`<div class="card"><h3>Your listings</h3><p><b>${mine.length}</b></p></div><div class="card"><h3>Verified</h3><p><b>${mine.filter(s=>s.verification==='verified').length}</b></p></div><div class="card"><h3>Awaiting verification</h3><p><b>${mine.filter(s=>s.verification!=='verified').length}</b></p></div>`;
+ document.getElementById('mine').innerHTML=mine.length?mine.map(s=>`<article class="card"><span class="badge">${s.verification==='verified'?'Verified':'Provider-listed, unverified'}</span><h3>${esc(s.name)}</h3><p class="mut">${esc(s.category)} · ${esc(s.locality)}</p><p>${esc(s.description)}</p><p>${pr(s)}</p><button class="btn ghost" data-d="${esc(s.id)}">Delete</button></article>`).join(''):'<p class="empty">No listings yet. Add one above.</p>'}
+document.getElementById('mine').onclick=async e=>{const id=e.target.dataset.d;if(!id||!confirm('Delete this listing?'))return;
+ const r=await fetch('/api/provider/listings/'+id,{method:'DELETE',headers:{'x-edit-key':keys[id]}});if(r.ok){delete keys[id];save()}else alert((await r.json()).error);load()};
+document.getElementById('pf').onsubmit=async e=>{e.preventDefault();const m=document.getElementById('pm'),d=Object.fromEntries(new FormData(e.target));m.className='';if(mineCount>=SM.limit('pv')){m.className='err';m.textContent='Your '+SM.tier()+' plan allows '+SM.limit('pv')+' listing(s). Delete one or choose a bigger plan.';return}m.textContent='Saving…';
+ try{const r=await fetch('/api/provider/listings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}),j=await r.json();if(!r.ok)throw new Error(j.error);
+ keys[j.listing.id]=j.editKey;save();e.target.reset();m.className='ok';m.textContent='Listing added (unverified).';load()}catch(x){m.className='err';m.textContent=x.message}};
+load();
+</script><datalist id="locs"></datalist><script src="common.js"></script></body></html>
